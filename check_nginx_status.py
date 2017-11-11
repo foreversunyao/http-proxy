@@ -11,13 +11,14 @@ import httplib, subprocess
 if __name__ == '__main__':
     FATAL = 2
     SUCCESS = 0
+    REMOTE_PORT = 50000
     total = len(sys.argv)
     exit_code=FATAL
     if total != 2:
         print("Usage: python xxx ipaddress")
         sys.exit(exit_code)
-    host=str(sys.argv[1])
-    c = httplib.HTTPConnection(host,50000)
+    HOST=str(sys.argv[1])
+    c = httplib.HTTPConnection(HOST,REMOTE_PORT)
     c.request('GET', '/', '{}')
     exit_code = c.getresponse().read()
     if int(exit_code) == SUCCESS:
